@@ -10,6 +10,7 @@ import { ReactComponent as AttachFileIcon } from '@material-symbols/svg-600/outl
 import { ReactComponent as BrushIcon } from '@material-symbols/svg-600/outlined/brush.svg';
 import { ReactComponent as CodeIcon } from '@material-symbols/svg-600/outlined/code.svg';
 import { ReactComponent as DescriptionIcon } from '@material-symbols/svg-600/outlined/description.svg';
+import { ReactComponent as GifBoxIcon } from '@material-symbols/svg-600/outlined/gif_box.svg';
 import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
 import { ReactComponent as MarkdownIcon } from '@material-symbols/svg-600/outlined/markdown.svg';
 import { ReactComponent as MoreHorizIcon } from '@material-symbols/svg-600/outlined/more_horiz.svg';
@@ -137,6 +138,9 @@ class ComposerOptions extends ImmutablePureComponent {
     onChangeContentType: PropTypes.func.isRequired,
     onTogglePoll: PropTypes.func.isRequired,
     onDoodleOpen: PropTypes.func.isRequired,
+    onEmbedTenor: PropTypes.func.isRequired,
+    onModalClose: PropTypes.func.isRequired,
+    onModalOpen: PropTypes.func.isRequired,
     onToggleSpoiler: PropTypes.func,
     onUpload: PropTypes.func.isRequired,
     contentType: PropTypes.string,
@@ -155,7 +159,7 @@ class ComposerOptions extends ImmutablePureComponent {
 
   handleClickAttach = (name) => {
     const { fileElement } = this;
-    const { onDoodleOpen } = this.props;
+    const { onDoodleOpen, onEmbedTenor } = this.props;
 
     switch (name) {
     case 'upload':
@@ -165,6 +169,11 @@ class ComposerOptions extends ImmutablePureComponent {
       return;
     case 'doodle':
       onDoodleOpen();
+      return;
+    case 'gif':
+      if (onEmbedTenor) {
+        onEmbedTenor();
+      }
       return;
     }
   };
@@ -251,6 +260,12 @@ class ComposerOptions extends ImmutablePureComponent {
               name: 'doodle',
               text: formatMessage(messages.doodle),
             },
+            {
+              icon: 'gif-box',
+              iconComponent: GifBoxIcon,
+              name: 'gif',
+              text: formatMessage(messages.gif),
+            }
           ]}
           onChange={this.handleClickAttach}
           title={formatMessage(messages.attach)}
