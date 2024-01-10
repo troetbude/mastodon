@@ -30,7 +30,6 @@ import BundleModalError from './bundle_modal_error';
 import ConfirmationModal from './confirmation_modal';
 import DeprecatedSettingsModal from './deprecated_settings_modal';
 import DoodleModal from './doodle_modal';
-import GIFModal from './gif_modal';
 import FavouriteModal from './favourite_modal';
 import FocalPointModal from './focal_point_modal';
 import ImageModal from './image_modal';
@@ -46,7 +45,6 @@ export const MODAL_COMPONENTS = {
   'BOOST': () => Promise.resolve({ default: BoostModal }),
   'FAVOURITE': () => Promise.resolve({ default: FavouriteModal }),
   'DOODLE': () => Promise.resolve({ default: DoodleModal }),
-  'TENOR': () => Promise.resolve({ default: GIFModal }),
   'CONFIRM': () => Promise.resolve({ default: ConfirmationModal }),
   'MUTE': MuteModal,
   'BLOCK': BlockModal,
@@ -79,7 +77,7 @@ export default class ModalRoot extends PureComponent {
     backgroundColor: null,
   };
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     if (this.props.type) {
       document.body.classList.add('with-modals--active');
       document.documentElement.style.marginRight = `${getScrollbarWidth()}px`;
@@ -94,7 +92,7 @@ export default class ModalRoot extends PureComponent {
   };
 
   renderLoading = modalId => () => {
-    return ['MEDIA', 'VIDEO', 'BOOST', 'FAVOURITE', 'DOODLE', 'TENOR', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
+    return ['MEDIA', 'VIDEO', 'BOOST', 'FAVOURITE', 'DOODLE', 'CONFIRM', 'ACTIONS'].indexOf(modalId) === -1 ? <ModalLoading /> : null;
   };
 
   renderError = (props) => {
@@ -114,9 +112,9 @@ export default class ModalRoot extends PureComponent {
   };
 
   // prevent closing of modal when clicking the overlay
-  noop = () => { };
+  noop = () => {};
 
-  render() {
+  render () {
     const { type, props, ignoreFocus } = this.props;
     const { backgroundColor } = this.state;
     const visible = !!type;
