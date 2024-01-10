@@ -51,6 +51,10 @@ const mapDispatchToProps = (dispatch) => ({
       modalProps: { noEsc: true, noClose: true },
     }));
   },
+
+  onEmbedTenor() {
+    dispatch(openModal('TENOR', { noEsc: true }));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Options);

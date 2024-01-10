@@ -34,6 +34,10 @@ const messages = defineMessages({
     defaultMessage: 'Draw something',
     id: 'compose.attach.doodle',
   },
+  gif: {
+    defaultMessage: 'Embed GIF',
+    id: 'compose.attach.gif',
+  },
   html: {
     defaultMessage: 'HTML',
     id: 'compose.content-type.html',
@@ -129,6 +133,7 @@ class ComposerOptions extends ImmutablePureComponent {
     onChangeContentType: PropTypes.func.isRequired,
     onTogglePoll: PropTypes.func.isRequired,
     onDoodleOpen: PropTypes.func.isRequired,
+    onEmbedTenor: PropTypes.func,
     onToggleSpoiler: PropTypes.func,
     onUpload: PropTypes.func.isRequired,
     contentType: PropTypes.string,
@@ -147,17 +152,22 @@ class ComposerOptions extends ImmutablePureComponent {
 
   handleClickAttach = (name) => {
     const { fileElement } = this;
-    const { onDoodleOpen } = this.props;
+    const { onDoodleOpen, onEmbedTenor } = this.props;
 
     switch (name) {
-    case 'upload':
-      if (fileElement) {
-        fileElement.click();
-      }
-      return;
-    case 'doodle':
-      onDoodleOpen();
-      return;
+      case 'upload':
+        if (fileElement) {
+          fileElement.click();
+        }
+        return;
+      case 'doodle':
+        onDoodleOpen();
+        return;
+      case 'gif':
+        if (onEmbedTenor) {
+          onEmbedTenor();
+        }
+        return;
     }
   };
 
@@ -172,7 +182,7 @@ class ComposerOptions extends ImmutablePureComponent {
     return <ToggleOption name={name} text={text} meta={meta} onChangeAdvancedOption={onChangeAdvancedOption} />;
   };
 
-  render () {
+  render() {
     const {
       acceptContentTypes,
       advancedOptions,
@@ -237,6 +247,11 @@ class ComposerOptions extends ImmutablePureComponent {
               name: 'doodle',
               text: formatMessage(messages.doodle),
             },
+            {
+              icon: 'file-image-o',
+              name: 'gif',
+              text: formatMessage(messages.gif),
+            }
           ]}
           onChange={this.handleClickAttach}
           title={formatMessage(messages.attach)}
