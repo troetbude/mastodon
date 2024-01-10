@@ -3745,7 +3745,7 @@ a:focus-visible,
   #mastodon .columns-area__panels__main > .columns-area--mobile {
     overflow: visible !important;
   }
-  #mastodon .columns-area__panels__main ~/ .is-composing .columns-area__panels__main {
+  #mastodon .columns-area__panels__main ~ .is-composing .columns-area__panels__main {
     padding-bottom: 40px !important;
   }
   #mastodon .columns-area__panels__main .scrollable,
