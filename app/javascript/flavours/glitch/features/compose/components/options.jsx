@@ -34,6 +34,10 @@ const messages = defineMessages({
     defaultMessage: 'Draw something',
     id: 'compose.attach.doodle',
   },
+  gif: {
+    defaultMessage: 'Embed GIF',
+    id: 'compose.attach.gif',
+  },
   html: {
     defaultMessage: 'HTML',
     id: 'compose.content-type.html',
