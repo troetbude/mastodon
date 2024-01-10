@@ -486,10 +486,10 @@
 }
 
 .compose-form__modifiers {
-  color: $inverted-text-color;
+  color: $classic-secondary-color;
   font-family: inherit;
   font-size: 14px;
-  background: $simple-background-color;
+  background: $classic-base-color;
 }
 
 .compose-form__buttons-wrapper {
@@ -567,7 +567,7 @@
 .privacy-dropdown__dropdown {
   border-radius: 4px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-  background: $simple-background-color;
+  background: var(--dropdown-background-color);
   overflow: hidden;
   transform-origin: 50% 0;
 }
