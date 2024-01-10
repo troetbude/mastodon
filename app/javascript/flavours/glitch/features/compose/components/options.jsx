@@ -243,6 +243,11 @@ class ComposerOptions extends ImmutablePureComponent {
               name: 'doodle',
               text: formatMessage(messages.doodle),
             },
+            {
+              icon: 'file-image-o',
+              name: 'gif',
+              text: formatMessage(messages.gif),
+            }
           ]}
           onChange={this.handleClickAttach}
           title={formatMessage(messages.attach)}
