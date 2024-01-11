@@ -112,9 +112,9 @@ class ComposeForm extends ImmutablePureComponent {
 
   getFulltextForCharacterCounting = () => {
     return [
-      this.props.spoiler? this.props.spoilerText: '',
+      this.props.spoiler ? this.props.spoilerText : '',
       countableText(this.props.text),
-      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 👁️' : '',
+      this.props.advancedOptions && this.props.advancedOptions.get('do_not_federate') ? ' 🐑' : '',
     ].join('');
   };
 
@@ -187,15 +187,15 @@ class ComposeForm extends ImmutablePureComponent {
     }
   };
 
-  componentDidMount () {
-    this._updateFocusAndSelection({ });
+  componentDidMount() {
+    this._updateFocusAndSelection({});
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     if (this.timeout) clearTimeout(this.timeout);
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     this._updateFocusAndSelection(prevProps);
   }
 
@@ -209,13 +209,13 @@ class ComposeForm extends ImmutablePureComponent {
       let selectionEnd, selectionStart;
 
       if (this.props.preselectDate !== prevProps.preselectDate && this.props.isInReply && this.props.preselectOnReply) {
-        selectionEnd   = this.props.text.length;
+        selectionEnd = this.props.text.length;
         selectionStart = this.props.text.search(/\s/) + 1;
       } else if (typeof this.props.caretPosition === 'number') {
         selectionStart = this.props.caretPosition;
-        selectionEnd   = this.props.caretPosition;
+        selectionEnd = this.props.caretPosition;
       } else {
-        selectionEnd   = this.props.text.length;
+        selectionEnd = this.props.text.length;
         selectionStart = selectionEnd;
       }
 
@@ -229,7 +229,7 @@ class ComposeForm extends ImmutablePureComponent {
         this.setState({ highlighted: true });
         this.timeout = setTimeout(() => this.setState({ highlighted: false }), 700);
       }).catch(console.error);
-    } else if(prevProps.isSubmitting && !this.props.isSubmitting) {
+    } else if (prevProps.isSubmitting && !this.props.isSubmitting) {
       this.textareaRef.current.focus();
     } else if (this.props.spoiler !== prevProps.spoiler) {
       if (this.props.spoiler) {
@@ -254,7 +254,7 @@ class ComposeForm extends ImmutablePureComponent {
     this.props.onPickEmoji(position, data);
   };
 
-  render () {
+  render() {
     const {
       intl,
       advancedOptions,
