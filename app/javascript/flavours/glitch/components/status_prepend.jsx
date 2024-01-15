@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import { ReactComponent as AddReactionIcon } from '@material-symbols/svg-600/outlined/add_reaction.svg';
 import { ReactComponent as EditIcon } from '@material-symbols/svg-600/outlined/edit.svg';
 import { ReactComponent as HomeIcon } from '@material-symbols/svg-600/outlined/home-fill.svg';
 import { ReactComponent as InsertChartIcon } from '@material-symbols/svg-600/outlined/insert_chart.svg';
@@ -66,6 +67,14 @@ export default class StatusPrepend extends PureComponent {
           values={{ name : link }}
         />
       );
+    case 'reaction':
+      return (
+        <FormattedMessage
+          id='notification.reaction'
+          defaultMessage='{name} reacted to your status'
+          values={{ name: link }}
+        />
+      );
     case 'reblog':
       return (
         <FormattedMessage
@@ -120,6 +129,10 @@ export default class StatusPrepend extends PureComponent {
     case 'favourite':
       iconId = 'star';
       iconComponent = StarIcon;
+      break;
+    case 'reaction':
+      iconId = 'add_reaction';
+      iconComponent = AddReactionIcon;
       break;
     case 'featured':
       iconId = 'thumb-tack';
