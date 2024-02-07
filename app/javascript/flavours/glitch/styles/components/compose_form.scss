@@ -51,8 +51,8 @@
     padding: 10px;
     width: 100%;
     outline: 0;
-    color: $inverted-text-color;
-    background: $simple-background-color;
+    color: $classic-secondary-color;
+    background: $classic-base-color;
     font-size: 14px;
     font-family: inherit;
     resize: vertical;
@@ -234,15 +234,15 @@
       width: 100%;
       min-height: 100px;
       outline: 0;
-      color: $inverted-text-color;
-      background: $simple-background-color;
+      color: $classic-secondary-color;
+      background: $classic-base-color;
       font-size: 14px;
       font-family: inherit;
       resize: none;
       scrollbar-color: initial;
 
       &::placeholder {
-        color: $dark-text-color;
+        color: $classic-primary-color;
       }
 
       &::-webkit-scrollbar {
@@ -487,15 +487,15 @@
 }
 
 .compose-form__modifiers {
-  color: $inverted-text-color;
+  color: $classic-secondary-color;
   font-family: inherit;
   font-size: 14px;
-  background: $simple-background-color;
+  background: $classic-base-color;
 }
 
 .compose-form__buttons-wrapper {
   padding: 10px;
-  background: darken($simple-background-color, 8%);
+  background: lighten($ui-base-color, 8%);
   border-radius: 0 0 4px 4px;
   height: 27px;
   display: flex;
@@ -527,7 +527,7 @@
 .privacy-dropdown__dropdown {
   border-radius: 4px;
   box-shadow: var(--dropdown-shadow);
-  background: $simple-background-color;
+  background: var(--dropdown-background-color);
   overflow: hidden;
   transform-origin: 50% 0;
 }
@@ -536,7 +536,7 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  color: $inverted-text-color;
+  color: $classic-secondary-color;
   cursor: pointer;
 
   .privacy-dropdown__option__content {
@@ -549,7 +549,7 @@
 
     strong {
       display: block;
-      color: $inverted-text-color;
+      color: $classic-secondary-color;
       font-weight: 500;
     }
   }
