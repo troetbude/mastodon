@@ -478,52 +478,7 @@ a:focus-visible,
     --top: 30px;
   }
 }
-.emoji-picker-dropdown__menu {
-  border-radius: var(--radius);
-  overflow: hidden;
-  resize: both;
-  width: 400px;
-}
-.emoji-mart {
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-.emoji-mart-scroll {
-  flex-grow: 1;
-  max-height: unset !important;
-}
-.emoji-mart-bar {
-  order: 2;
-}
-.emoji-mart-category-list {
-  overflow: visible !important;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(20px + 6%), 1fr));
-}
-.emoji-mart-category-list li {
-  display: contents;
-}
-.emoji-mart-category-list button {
-  position: relative;
-  padding-top: 100% !important;
-}
-.emoji-mart-category-list button img,
-.emoji-mart-category-list button span {
-  height: calc(100% - 10px) !important;
-  width: calc(100% - 10px) !important;
-  inset: 5px;
-  position: absolute !important;
-  transition: transform 0.1s cubic-bezier(0, 0, 0, 1);
-}
-.emoji-mart-category-list button:hover img,
-.emoji-mart-category-list button:hover span {
-  transform: scale(1.2);
-}
-.emoji-picker-dropdown__modifiers {
-  top: 16px;
-}
+
 #mastodon {
   overflow: clip;
 }
