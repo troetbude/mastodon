@@ -8,9 +8,9 @@ import classNames from 'classnames';
 import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { ReactComponent as VisibilityOffIcon } from '@material-symbols/svg-600/outlined/visibility_off.svg';
 import { debounce } from 'lodash';
 
+import VisibilityOffIcon from '@/material-icons/400-24px/visibility_off.svg?react';
 import { Blurhash } from 'flavours/glitch/components/blurhash';
 
 import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
@@ -18,26 +18,7 @@ import { autoPlayGif, displayMedia, useBlurhash } from '../initial_state';
 import { IconButton } from './icon_button';
 
 const messages = defineMessages({
-  hidden: {
-    defaultMessage: 'Media hidden',
-    id: 'status.media_hidden',
-  },
-  sensitive: {
-    defaultMessage: 'Sensitive',
-    id: 'media_gallery.sensitive',
-  },
-  toggle: {
-    defaultMessage: 'Click to view',
-    id: 'status.sensitive_toggle',
-  },
-  toggle_visible: {
-    defaultMessage: '{number, plural, one {Hide image} other {Hide images}}',
-    id: 'media_gallery.toggle_visible',
-  },
-  warning: {
-    defaultMessage: 'Sensitive content',
-    id: 'status.sensitive_warning',
-  },
+  toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: '{number, plural, one {Hide image} other {Hide images}}' },
 });
 
 class Item extends PureComponent {
@@ -123,7 +104,7 @@ class Item extends PureComponent {
     }
 
     if (attachment.get('description')?.length > 0) {
-      badges.push(<span key='alt' className='media-gallery__gifv__label'>ALT</span>);
+      badges.push(<span key='alt' className='media-gallery__alt__label'>ALT</span>);
     }
 
     const description = attachment.getIn(['translation', 'description']) || attachment.get('description');
@@ -299,8 +280,8 @@ class MediaGallery extends PureComponent {
     this.props.onOpenMedia(this.props.media, index, this.props.lang);
   };
 
-  handleRef = (node) => {
-    this.node = node;
+  handleRef = c => {
+    this.node = c;
 
     if (this.node) {
       this._setDimensions();
@@ -379,11 +360,6 @@ class MediaGallery extends PureComponent {
       <div className={computedClass} style={style} ref={this.handleRef}>
         <div className={classNames('spoiler-button', { 'spoiler-button--minified': visible && !uncached, 'spoiler-button--click-thru': uncached })}>
           {spoilerButton}
-          {visible && sensitive && (
-            <span className='sensitive-marker'>
-              <FormattedMessage {...messages.sensitive} />
-            </span>
-          )}
         </div>
 
         {children}

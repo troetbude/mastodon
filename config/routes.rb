@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sidekiq_unique_jobs/web'
+require 'sidekiq_unique_jobs/web' if ENV['ENABLE_SIDEKIQ_UNIQUE_JOBS_UI'] == true
 require 'sidekiq-scheduler/web'
 
 class RedirectWithVary < ActionDispatch::Routing::PathRedirect
@@ -161,6 +161,11 @@ Rails.application.routes.draw do
     resources :strikes, only: [:show, :index] do
       resource :appeal, only: [:create]
     end
+  end
+
+  namespace :redirect do
+    resources :accounts, only: :show
+    resources :statuses, only: :show
   end
 
   resources :media, only: [:show] do
