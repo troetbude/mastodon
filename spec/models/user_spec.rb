@@ -438,7 +438,10 @@ RSpec.describe User do
     let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
     let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
+    let(:redis_pipeline_stub) { instance_double(Redis::Namespace, publish: nil) }
+
     before do
+      allow(redis).to receive(:pipelined).and_yield(redis_pipeline_stub)
       user.reset_password!
     end
 
@@ -455,18 +458,22 @@ RSpec.describe User do
       expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
     end
 
+    it 'revokes streaming access for all access tokens' do
+      expect(redis_pipeline_stub).to have_received(:publish).with("timeline:access_token:#{access_token.id}", Oj.dump(event: :kill)).once
+    end
+
     it 'removes push subscriptions' do
       expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
       expect { web_push_subscription.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
-  describe '#confirm!' do
+  describe '#mark_email_as_confirmed!' do
     subject(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     before do
       ActionMailer::Base.deliveries.clear
-      user.confirm!
+      user.mark_email_as_confirmed!
     end
 
     after { ActionMailer::Base.deliveries.clear }

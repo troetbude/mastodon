@@ -15,7 +15,7 @@ import { HotKeys } from 'react-hotkeys';
 import { changeLayout } from 'flavours/glitch/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
-import PermaLink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import PictureInPicture from 'flavours/glitch/features/picture_in_picture';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { WithRouterPropTypes } from 'flavours/glitch/utils/react_router';
@@ -602,18 +602,7 @@ class UI extends PureComponent {
     const { draggingOver } = this.state;
     const { children, isWide, location, dropdownMenuIsOpen, layout, moved } = this.props;
 
-    const columnsClass = layout => {
-      switch (layout) {
-      case 'single':
-        return 'single-column';
-      case 'multiple':
-        return 'multi-columns';
-      default:
-        return 'auto-columns';
-      }
-    };
-
-    const className = classNames('ui', columnsClass(layout), {
+    const className = classNames('ui', {
       'wide': isWide,
       'system-font': this.props.systemFontUi,
       'hicolor-privacy-icons': this.props.hicolorPrivacyIcons,
@@ -649,9 +638,9 @@ class UI extends PureComponent {
               id='moved_to_warning'
               defaultMessage='This account is marked as moved to {moved_to_link}, and may thus not accept new follows.'
               values={{ moved_to_link: (
-                <PermaLink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
+                <Permalink href={moved.get('url')} to={`/@${moved.get('acct')}`}>
                   @{moved.get('acct')}
-                </PermaLink>
+                </Permalink>
               ) }}
             />
           </div>)}

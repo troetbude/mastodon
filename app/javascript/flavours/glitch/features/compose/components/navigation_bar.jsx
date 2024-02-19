@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
-import Permalink from 'flavours/glitch/components/permalink';
+import { Permalink } from 'flavours/glitch/components/permalink';
 import { profileLink } from 'flavours/glitch/utils/backend_links';
 
 import { Avatar } from '../../../components/avatar';
@@ -38,8 +38,8 @@ export default class NavigationBar extends ImmutablePureComponent {
 
           { profileLink !== undefined && (
             <a
-              className='edit'
               href={profileLink}
+              className='navigation-bar__profile-edit'
             ><FormattedMessage id='navigation_bar.edit_profile' defaultMessage='Edit profile' /></a>
           )}
         </div>
